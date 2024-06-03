@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "drivers",
+  "info": {
+    "singularName": "driver",
+    "pluralName": "drivers",
+    "displayName": "driver",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email",
+      "unique": true,
+      "required": true
+    },
+    "isActive": {
+      "type": "boolean"
+    },
+    "password": {
+      "type": "password"
+    }
+  }
+}
