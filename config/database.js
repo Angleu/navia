@@ -50,12 +50,12 @@ module.exports = ({ env }) => {
     postgres: {
       connection: {
         connectionString: env('DATABASE_URL'),
-        host: env('DATABASE_HOST', 'localhost'),
+        host: env('DATABASE_HOST', 'dpg-cpnel688fa8c73avt960-a.virginia-postgres.render.com'),
         port: env.int('DATABASE_PORT', 5432),
         database: env('DATABASE_NAME', 'navia'),
         user: env('DATABASE_USERNAME', 'navia_user'),
         password: env('DATABASE_PASSWORD', '9sIGJ8CEXMcyuqVku8WazdcRo8p6opgc'),
-        ssl: env.bool('DATABASE_SSL', false) && {
+        ssl: env.bool('DATABASE_SSL', true) && {
           key: env('DATABASE_SSL_KEY', undefined),
           cert: env('DATABASE_SSL_CERT', undefined),
           ca: env('DATABASE_SSL_CA', undefined),
