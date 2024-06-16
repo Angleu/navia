@@ -52,9 +52,9 @@ module.exports = ({ env }) => {
         connectionString: env('DATABASE_URL'),
         host: env('DATABASE_HOST', 'localhost'),
         port: env.int('DATABASE_PORT', 5432),
-        database: env('DATABASE_NAME', 'strapi'),
-        user: env('DATABASE_USERNAME', 'postgres'),
-        password: env('DATABASE_PASSWORD', 'zuadasilva'),
+        database: env('DATABASE_NAME', 'navia'),
+        user: env('DATABASE_USERNAME', 'navia_user'),
+        password: env('DATABASE_PASSWORD', '9sIGJ8CEXMcyuqVku8WazdcRo8p6opgc'),
         ssl: env.bool('DATABASE_SSL', false) && {
           key: env('DATABASE_SSL_KEY', undefined),
           cert: env('DATABASE_SSL_CERT', undefined),
