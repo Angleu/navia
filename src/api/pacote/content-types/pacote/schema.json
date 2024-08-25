@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "pacotes",
+  "info": {
+    "singularName": "pacote",
+    "pluralName": "pacotes",
+    "displayName": "Pacote",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nome": {
+      "type": "string",
+      "required": false
+    },
+    "descricao": {
+      "type": "text"
+    },
+    "produtos": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::produto.produto"
+    }
+  }
+}

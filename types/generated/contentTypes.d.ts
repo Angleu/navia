@@ -888,6 +888,43 @@ export interface ApiNewNew extends Schema.CollectionType {
   };
 }
 
+export interface ApiPacotePacote extends Schema.CollectionType {
+  collectionName: 'pacotes';
+  info: {
+    singularName: 'pacote';
+    pluralName: 'pacotes';
+    displayName: 'Pacote';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    nome: Attribute.String;
+    descricao: Attribute.Text;
+    produtos: Attribute.Relation<
+      'api::pacote.pacote',
+      'oneToMany',
+      'api::produto.produto'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::pacote.pacote',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::pacote.pacote',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiProductProduct extends Schema.CollectionType {
   collectionName: 'products';
   info: {
@@ -977,6 +1014,7 @@ declare module '@strapi/types' {
       'api::category.category': ApiCategoryCategory;
       'api::driver.driver': ApiDriverDriver;
       'api::new.new': ApiNewNew;
+      'api::pacote.pacote': ApiPacotePacote;
       'api::product.product': ApiProductProduct;
       'api::produto.produto': ApiProdutoProduto;
     }
