@@ -82,6 +82,12 @@
       "relation": "oneToOne",
       "target": "api::driver.driver",
       "mappedBy": "users_permissions_user"
+    },
+    "customer": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::customer.customer",
+      "mappedBy": "user"
     }
   }
 }
