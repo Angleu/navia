@@ -742,7 +742,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
   options: {
     draftAndPublish: false;
-    timestamps: true;
   };
   attributes: {
     username: Attribute.String &
@@ -770,6 +769,21 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'plugin::users-permissions.user',
       'manyToOne',
       'plugin::users-permissions.role'
+    >;
+    produtos: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToMany',
+      'api::produto.produto'
+    >;
+    pacotes: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToMany',
+      'api::pacote.pacote'
+    >;
+    driver: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToOne',
+      'api::driver.driver'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -837,9 +851,12 @@ export interface ApiDriverDriver extends Schema.CollectionType {
   };
   attributes: {
     name: Attribute.String;
-    email: Attribute.Email & Attribute.Required & Attribute.Unique;
-    isActive: Attribute.Boolean;
-    password: Attribute.Password;
+    users_permissions_user: Attribute.Relation<
+      'api::driver.driver',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    avatar: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -907,6 +924,11 @@ export interface ApiPacotePacote extends Schema.CollectionType {
       'oneToMany',
       'api::produto.produto'
     >;
+    users_permissions_user: Attribute.Relation<
+      'api::pacote.pacote',
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -918,39 +940,6 @@ export interface ApiPacotePacote extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::pacote.pacote',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiProductProduct extends Schema.CollectionType {
-  collectionName: 'products';
-  info: {
-    singularName: 'product';
-    pluralName: 'products';
-    displayName: 'product';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    name: Attribute.String;
-    description: Attribute.String;
-    price: Attribute.Float;
-    stock: Attribute.BigInteger;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::product.product',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::product.product',
       'oneToOne',
       'admin::user'
     > &
@@ -975,6 +964,11 @@ export interface ApiProdutoProduto extends Schema.CollectionType {
     valor: Attribute.Float;
     quantidade: Attribute.Integer;
     foto: Attribute.Media;
+    users_permissions_user: Attribute.Relation<
+      'api::produto.produto',
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1015,7 +1009,6 @@ declare module '@strapi/types' {
       'api::driver.driver': ApiDriverDriver;
       'api::new.new': ApiNewNew;
       'api::pacote.pacote': ApiPacotePacote;
-      'api::product.product': ApiProductProduct;
       'api::produto.produto': ApiProdutoProduto;
     }
   }

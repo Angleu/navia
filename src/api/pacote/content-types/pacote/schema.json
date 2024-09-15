@@ -23,6 +23,12 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::produto.produto"
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "pacotes"
     }
   }
 }
