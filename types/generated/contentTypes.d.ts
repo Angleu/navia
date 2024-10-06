@@ -775,20 +775,15 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'oneToMany',
       'api::produto.produto'
     >;
-    pacotes: Attribute.Relation<
-      'plugin::users-permissions.user',
-      'oneToMany',
-      'api::pacote.pacote'
-    >;
     driver: Attribute.Relation<
       'plugin::users-permissions.user',
       'oneToOne',
       'api::driver.driver'
     >;
-    customer: Attribute.Relation<
+    pacotes: Attribute.Relation<
       'plugin::users-permissions.user',
-      'oneToOne',
-      'api::customer.customer'
+      'oneToMany',
+      'api::pacote.pacote'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -800,6 +795,44 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'plugin::users-permissions.user',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiAddressAddress extends Schema.CollectionType {
+  collectionName: 'addresses';
+  info: {
+    singularName: 'address';
+    pluralName: 'addresses';
+    displayName: 'address';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    country: Attribute.String & Attribute.DefaultTo<'Angola'>;
+    city: Attribute.String;
+    address: Attribute.String;
+    driver: Attribute.Relation<
+      'api::address.address',
+      'oneToOne',
+      'api::driver.driver'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::address.address',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::address.address',
       'oneToOne',
       'admin::user'
     > &
@@ -849,9 +882,10 @@ export interface ApiCustomerCustomer extends Schema.CollectionType {
     singularName: 'customer';
     pluralName: 'customers';
     displayName: 'customer';
+    description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     name: Attribute.String;
@@ -863,7 +897,6 @@ export interface ApiCustomerCustomer extends Schema.CollectionType {
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::customer.customer',
       'oneToOne',
@@ -872,6 +905,44 @@ export interface ApiCustomerCustomer extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::customer.customer',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiDocumentDocument extends Schema.CollectionType {
+  collectionName: 'documents';
+  info: {
+    singularName: 'document';
+    pluralName: 'documents';
+    displayName: 'document';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    identification: Attribute.Media & Attribute.Required;
+    criminalRecord: Attribute.Media;
+    addressProof: Attribute.Media;
+    driver: Attribute.Relation<
+      'api::document.document',
+      'oneToOne',
+      'api::driver.driver'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::document.document',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::document.document',
       'oneToOne',
       'admin::user'
     > &
@@ -898,6 +969,9 @@ export interface ApiDriverDriver extends Schema.CollectionType {
       'plugin::users-permissions.user'
     >;
     avatar: Attribute.Media;
+    bi: Attribute.String;
+    dataNascimento: Attribute.Date;
+    sexo: Attribute.Enumeration<['masculino', 'feminino']>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -965,7 +1039,7 @@ export interface ApiPacotePacote extends Schema.CollectionType {
       'oneToMany',
       'api::produto.produto'
     >;
-    users_permissions_user: Attribute.Relation<
+    user: Attribute.Relation<
       'api::pacote.pacote',
       'manyToOne',
       'plugin::users-permissions.user'
@@ -1046,8 +1120,10 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::address.address': ApiAddressAddress;
       'api::category.category': ApiCategoryCategory;
       'api::customer.customer': ApiCustomerCustomer;
+      'api::document.document': ApiDocumentDocument;
       'api::driver.driver': ApiDriverDriver;
       'api::new.new': ApiNewNew;
       'api::pacote.pacote': ApiPacotePacote;

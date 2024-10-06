@@ -71,22 +71,16 @@
       "target": "api::produto.produto",
       "mappedBy": "users_permissions_user"
     },
-    "pacotes": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::pacote.pacote",
-      "mappedBy": "users_permissions_user"
-    },
     "driver": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::driver.driver",
       "mappedBy": "users_permissions_user"
     },
-    "customer": {
+    "pacotes": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::customer.customer",
+      "relation": "oneToMany",
+      "target": "api::pacote.pacote",
       "mappedBy": "user"
     }
   }

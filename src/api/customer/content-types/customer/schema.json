@@ -4,10 +4,11 @@
   "info": {
     "singularName": "customer",
     "pluralName": "customers",
-    "displayName": "customer"
+    "displayName": "customer",
+    "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
@@ -15,17 +16,17 @@
       "type": "string"
     },
     "avatar": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     },
     "user": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "plugin::users-permissions.user",
-      "inversedBy": "customer"
+      "target": "plugin::users-permissions.user"
     }
   }
 }

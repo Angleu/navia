@@ -22,11 +22,25 @@
       "inversedBy": "driver"
     },
     "avatar": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
+    },
+    "bi": {
+      "type": "string"
+    },
+    "dataNascimento": {
+      "type": "date"
+    },
+    "sexo": {
+      "type": "enumeration",
+      "enum": [
+        "masculino",
+        "feminino"
+      ]
     }
   }
 }
