@@ -27,6 +27,10 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "plugin::users-permissions.user"
+    },
+    "province": {
+      "type": "string",
+      "required": true
     }
   }
 }

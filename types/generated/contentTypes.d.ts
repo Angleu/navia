@@ -895,6 +895,7 @@ export interface ApiCustomerCustomer extends Schema.CollectionType {
       'oneToOne',
       'plugin::users-permissions.user'
     >;
+    province: Attribute.String & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
