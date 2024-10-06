@@ -1080,7 +1080,7 @@ export interface ApiProdutoProduto extends Schema.CollectionType {
     valor: Attribute.Float;
     quantidade: Attribute.Integer;
     foto: Attribute.Media;
-    users_permissions_user: Attribute.Relation<
+    user: Attribute.Relation<
       'api::produto.produto',
       'manyToOne',
       'plugin::users-permissions.user'
