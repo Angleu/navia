@@ -20,7 +20,7 @@ module.exports = createCoreController('api::customer.customer', ({ strapi }) => 
     }
 
     // Modifica a consulta para retornar apenas os dados que pertencem ao usuário autenticado
-    const customers = await strapi.db.query('api::customer.customer').findMany({
+    const customers = await strapi.db.query('api::customer.customer').findOne({
       where: { user: user.id }, // Filtra pelos clientes do usuário autenticado
       populate: true, // Popula os dados relacionados (opcional)
     });
