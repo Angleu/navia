@@ -1040,9 +1040,9 @@ export interface ApiPacotePacote extends Schema.CollectionType {
   attributes: {
     nome: Attribute.String;
     descricao: Attribute.Text;
-    produto: Attribute.Relation<
+    produtos: Attribute.Relation<
       'api::pacote.pacote',
-      'manyToOne',
+      'oneToMany',
       'api::produto.produto'
     >;
     user: Attribute.Relation<
@@ -1091,9 +1091,9 @@ export interface ApiProdutoProduto extends Schema.CollectionType {
       'plugin::users-permissions.user'
     >;
     disponivel: Attribute.Boolean & Attribute.DefaultTo<true>;
-    pacotes: Attribute.Relation<
+    pacote: Attribute.Relation<
       'api::produto.produto',
-      'oneToMany',
+      'manyToOne',
       'api::pacote.pacote'
     >;
     createdAt: Attribute.DateTime;

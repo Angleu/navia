@@ -19,11 +19,11 @@
     "descricao": {
       "type": "text"
     },
-    "produto": {
+    "produtos": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "oneToMany",
       "target": "api::produto.produto",
-      "inversedBy": "pacotes"
+      "mappedBy": "pacote"
     },
     "user": {
       "type": "relation",

@@ -50,11 +50,11 @@
       "type": "boolean",
       "default": true
     },
-    "pacotes": {
+    "pacote": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "manyToOne",
       "target": "api::pacote.pacote",
-      "mappedBy": "produto"
+      "inversedBy": "produtos"
     }
   }
 }
