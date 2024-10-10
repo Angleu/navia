@@ -1,0 +1,49 @@
+{
+  "kind": "collectionType",
+  "collectionName": "transactions",
+  "info": {
+    "singularName": "transaction",
+    "pluralName": "transactions",
+    "displayName": "transaction"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "transactionId": {
+      "type": "uid"
+    },
+    "walletId": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::wallet.wallet",
+      "inversedBy": "transactions"
+    },
+    "transactionType": {
+      "type": "enumeration",
+      "enum": [
+        "deposit",
+        "payment",
+        "withdraw"
+      ]
+    },
+    "amount": {
+      "type": "float"
+    },
+    "transactionDate": {
+      "type": "datetime"
+    },
+    "state": {
+      "type": "enumeration",
+      "enum": [
+        "complete"
+      ]
+    },
+    "walletReceiver": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::wallet.wallet"
+    }
+  }
+}

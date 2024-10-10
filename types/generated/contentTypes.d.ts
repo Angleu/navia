@@ -785,6 +785,11 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'oneToMany',
       'api::pacote.pacote'
     >;
+    wallet: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToOne',
+      'api::wallet.wallet'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1072,7 +1077,7 @@ export interface ApiProdutoProduto extends Schema.CollectionType {
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     nome: Attribute.String;
@@ -1085,9 +1090,9 @@ export interface ApiProdutoProduto extends Schema.CollectionType {
       'manyToOne',
       'plugin::users-permissions.user'
     >;
+    disponivel: Attribute.Boolean & Attribute.DefaultTo<true>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::produto.produto',
       'oneToOne',
@@ -1096,6 +1101,93 @@ export interface ApiProdutoProduto extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::produto.produto',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiTransactionTransaction extends Schema.CollectionType {
+  collectionName: 'transactions';
+  info: {
+    singularName: 'transaction';
+    pluralName: 'transactions';
+    displayName: 'transaction';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    transactionId: Attribute.UID;
+    walletId: Attribute.Relation<
+      'api::transaction.transaction',
+      'manyToOne',
+      'api::wallet.wallet'
+    >;
+    transactionType: Attribute.Enumeration<['deposit', 'payment', 'withdraw']>;
+    amount: Attribute.Float;
+    transactionDate: Attribute.DateTime;
+    state: Attribute.Enumeration<['complete']>;
+    walletReceiver: Attribute.Relation<
+      'api::transaction.transaction',
+      'oneToOne',
+      'api::wallet.wallet'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::transaction.transaction',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::transaction.transaction',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiWalletWallet extends Schema.CollectionType {
+  collectionName: 'wallets';
+  info: {
+    singularName: 'wallet';
+    pluralName: 'wallets';
+    displayName: 'Wallet';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    id_wallet: Attribute.UID &
+      Attribute.CustomField<'plugin::strapi-advanced-uuid.uuid'>;
+    balance: Attribute.Float & Attribute.DefaultTo<0>;
+    currency: Attribute.String & Attribute.DefaultTo<'AOA'>;
+    status: Attribute.Enumeration<['active', 'inactive']>;
+    user: Attribute.Relation<
+      'api::wallet.wallet',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    transactions: Attribute.Relation<
+      'api::wallet.wallet',
+      'oneToMany',
+      'api::transaction.transaction'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::wallet.wallet',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::wallet.wallet',
       'oneToOne',
       'admin::user'
     > &
@@ -1129,6 +1221,8 @@ declare module '@strapi/types' {
       'api::new.new': ApiNewNew;
       'api::pacote.pacote': ApiPacotePacote;
       'api::produto.produto': ApiProdutoProduto;
+      'api::transaction.transaction': ApiTransactionTransaction;
+      'api::wallet.wallet': ApiWalletWallet;
     }
   }
 }
