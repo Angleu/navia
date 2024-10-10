@@ -49,6 +49,12 @@
     "disponivel": {
       "type": "boolean",
       "default": true
+    },
+    "pacotes": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::pacote.pacote",
+      "mappedBy": "produto"
     }
   }
 }
