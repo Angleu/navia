@@ -1022,16 +1022,8 @@ export interface ApiEncomendaEncomenda extends Schema.CollectionType {
       'oneToOne',
       'api::pacote.pacote'
     >;
-    endereco_entrega: Attribute.Relation<
-      'api::encomenda.encomenda',
-      'oneToOne',
-      'api::address.address'
-    >;
-    endereco_recolha: Attribute.Relation<
-      'api::encomenda.encomenda',
-      'oneToOne',
-      'api::address.address'
-    >;
+    endereco_entrega: Attribute.String;
+    endereco_recolha: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
