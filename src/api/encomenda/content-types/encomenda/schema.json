@@ -1,0 +1,48 @@
+{
+  "kind": "collectionType",
+  "collectionName": "encomendas",
+  "info": {
+    "singularName": "encomenda",
+    "pluralName": "encomendas",
+    "displayName": "encomenda",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "estado": {
+      "type": "enumeration",
+      "enum": [
+        "pendente",
+        "aceito",
+        "em transito",
+        "concluido"
+      ],
+      "default": "pendente"
+    },
+    "cliente": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "encomendas"
+    },
+    "pacote": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::pacote.pacote",
+      "inversedBy": "encomenda"
+    },
+    "endereco_entrega": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::address.address"
+    },
+    "endereco_recolha": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::address.address"
+    }
+  }
+}

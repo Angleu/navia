@@ -790,6 +790,11 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'oneToOne',
       'api::wallet.wallet'
     >;
+    encomendas: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToMany',
+      'api::encomenda.encomenda'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -822,11 +827,6 @@ export interface ApiAddressAddress extends Schema.CollectionType {
     country: Attribute.String & Attribute.DefaultTo<'Angola'>;
     city: Attribute.String;
     address: Attribute.String;
-    driver: Attribute.Relation<
-      'api::address.address',
-      'oneToOne',
-      'api::driver.driver'
-    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -996,6 +996,59 @@ export interface ApiDriverDriver extends Schema.CollectionType {
   };
 }
 
+export interface ApiEncomendaEncomenda extends Schema.CollectionType {
+  collectionName: 'encomendas';
+  info: {
+    singularName: 'encomenda';
+    pluralName: 'encomendas';
+    displayName: 'encomenda';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    estado: Attribute.Enumeration<
+      ['pendente', 'aceito', 'em transito', 'concluido']
+    > &
+      Attribute.DefaultTo<'pendente'>;
+    cliente: Attribute.Relation<
+      'api::encomenda.encomenda',
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+    pacote: Attribute.Relation<
+      'api::encomenda.encomenda',
+      'oneToOne',
+      'api::pacote.pacote'
+    >;
+    endereco_entrega: Attribute.Relation<
+      'api::encomenda.encomenda',
+      'oneToOne',
+      'api::address.address'
+    >;
+    endereco_recolha: Attribute.Relation<
+      'api::encomenda.encomenda',
+      'oneToOne',
+      'api::address.address'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::encomenda.encomenda',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::encomenda.encomenda',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiNewNew extends Schema.CollectionType {
   collectionName: 'news';
   info: {
@@ -1049,6 +1102,11 @@ export interface ApiPacotePacote extends Schema.CollectionType {
       'api::pacote.pacote',
       'manyToOne',
       'plugin::users-permissions.user'
+    >;
+    encomenda: Attribute.Relation<
+      'api::pacote.pacote',
+      'oneToOne',
+      'api::encomenda.encomenda'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1223,6 +1281,7 @@ declare module '@strapi/types' {
       'api::customer.customer': ApiCustomerCustomer;
       'api::document.document': ApiDocumentDocument;
       'api::driver.driver': ApiDriverDriver;
+      'api::encomenda.encomenda': ApiEncomendaEncomenda;
       'api::new.new': ApiNewNew;
       'api::pacote.pacote': ApiPacotePacote;
       'api::produto.produto': ApiProdutoProduto;
