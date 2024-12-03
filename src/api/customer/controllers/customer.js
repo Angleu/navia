@@ -4,12 +4,12 @@
  * customer controller
  */
 
-const { createCoreController } = require('@strapi/strapi').factories;
+const {createCoreController} = require('@strapi/strapi').factories;
 
 // module.exports = createCoreController('api::customer.customer') ;
 
 
-module.exports = createCoreController('api::customer.customer', ({ strapi }) => ({
+module.exports = createCoreController('api::customer.customer', ({strapi}) => ({
   // Sobrescreve o método `find`
   async find(ctx) {
     // Obtém o ID do usuário autenticado
@@ -21,7 +21,7 @@ module.exports = createCoreController('api::customer.customer', ({ strapi }) => 
 
     // Modifica a consulta para retornar apenas os dados que pertencem ao usuário autenticado
     const customers = await strapi.db.query('api::customer.customer').findOne({
-      where: { user: user.id }, // Filtra pelos clientes do usuário autenticado
+      where: {user: user.id}, // Filtra pelos clientes do usuário autenticado
       populate: true, // Popula os dados relacionados (opcional)
     });
 
@@ -39,7 +39,7 @@ module.exports = createCoreController('api::customer.customer', ({ strapi }) => 
 
     // Adiciona o ID do usuário autenticado nos dados do cliente
     // @ts-ignore
-    const { data } = ctx.request.body;
+    const {data} = ctx.request.body;
 
     if (!data) {
       return ctx.badRequest("Nenhum dado foi fornecido.");
@@ -49,7 +49,7 @@ module.exports = createCoreController('api::customer.customer', ({ strapi }) => 
     data.user = user.id;
 
     // Cria o cliente com os dados modificados
-    const entity = await strapi.db.query('api::customer.customer').create({ data });
+    const entity = await strapi.db.query('api::customer.customer').create({data});
 
     return entity;
   },

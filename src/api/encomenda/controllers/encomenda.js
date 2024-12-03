@@ -4,11 +4,11 @@
  * encomenda controller
  */
 
-const { createCoreController } = require('@strapi/strapi').factories;
+const {createCoreController} = require('@strapi/strapi').factories;
 
 // // module.exports = createCoreController('api::encomenda.encomenda');
 
-module.exports = createCoreController('api::encomenda.encomenda', ({ strapi }) => ({
+module.exports = createCoreController('api::encomenda.encomenda', ({strapi}) => ({
   // Sobrescreve o método `find`
   async find(ctx) {
     // Obtém o ID do usuário autenticado
@@ -20,7 +20,7 @@ module.exports = createCoreController('api::encomenda.encomenda', ({ strapi }) =
 
     // Modifica a consulta para retornar apenas os dados que pertencem ao usuário autenticado
     const encomendas = await strapi.db.query('api::encomenda.encomenda').findMany({
-      where: { cliente: user.id }, // Filtra pelos clientes do usuário autenticado
+      where: {cliente: user.id}, // Filtra pelos clientes do usuário autenticado
       populate: true, // Popula os dados relacionados (opcional)
     });
 
@@ -38,7 +38,7 @@ module.exports = createCoreController('api::encomenda.encomenda', ({ strapi }) =
 
     // Adiciona o ID do usuário autenticado nos dados do cliente
     // @ts-ignore
-    const { data } = ctx.request.body;
+    const {data} = ctx.request.body;
 
     if (!data) {
       return ctx.badRequest("Nenhum dado foi fornecido.");
@@ -48,8 +48,19 @@ module.exports = createCoreController('api::encomenda.encomenda', ({ strapi }) =
     data.cliente = user.id;
 
     // Cria o cliente com os dados modificados
-    const entity = await strapi.db.query('api::encomenda.encomenda').create({ data });
+    const entity = await strapi.db.query('api::encomenda.encomenda').create({data});
 
     return entity;
   },
+
+  async findFreeEncomenda(ctx) {
+    try {
+      const encomendas = await strapi.service('api::encomenda.encomenda').findEncomendaFreeForDriver(ctx);
+      return encomendas;
+    } catch (error) {
+      ctx.throw(400, error.message);
+    }
+
+  }
+
 }));

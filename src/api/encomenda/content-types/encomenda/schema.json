@@ -39,6 +39,17 @@
     },
     "endereco_recolha": {
       "type": "string"
+    },
+    "driver": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "messages": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::message.message",
+      "mappedBy": "encomenda"
     }
   }
 }

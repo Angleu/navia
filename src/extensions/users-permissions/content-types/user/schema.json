@@ -94,6 +94,12 @@
       "relation": "oneToMany",
       "target": "api::encomenda.encomenda",
       "mappedBy": "cliente"
+    },
+    "messages": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::message.message",
+      "mappedBy": "recipient"
     }
   }
 }
