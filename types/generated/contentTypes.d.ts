@@ -516,7 +516,7 @@ export interface ApiDriverDriver extends Schema.CollectionType {
     singularName: 'driver';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     avatar: Attribute.Media<'images'>;
@@ -530,7 +530,6 @@ export interface ApiDriverDriver extends Schema.CollectionType {
       Attribute.Private;
     dataNascimento: Attribute.Date;
     name: Attribute.String;
-    publishedAt: Attribute.DateTime;
     sexo: Attribute.Enumeration<['masculino', 'feminino']>;
     updatedAt: Attribute.DateTime;
     updatedBy: Attribute.Relation<
@@ -539,7 +538,7 @@ export interface ApiDriverDriver extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
-    users_permissions_user: Attribute.Relation<
+    user: Attribute.Relation<
       'api::driver.driver',
       'oneToOne',
       'plugin::users-permissions.user'
@@ -574,7 +573,7 @@ export interface ApiEncomendaEncomenda extends Schema.CollectionType {
     driver: Attribute.Relation<
       'api::encomenda.encomenda',
       'oneToOne',
-      'plugin::users-permissions.user'
+      'api::driver.driver'
     >;
     endereco_entrega: Attribute.String;
     endereco_recolha: Attribute.String;

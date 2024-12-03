@@ -43,7 +43,7 @@
     "driver": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "plugin::users-permissions.user"
+      "target": "api::driver.driver"
     },
     "messages": {
       "type": "relation",

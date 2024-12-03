@@ -71,12 +71,6 @@
       "target": "api::produto.produto",
       "mappedBy": "user"
     },
-    "driver": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::driver.driver",
-      "mappedBy": "users_permissions_user"
-    },
     "pacotes": {
       "type": "relation",
       "relation": "oneToMany",
@@ -100,6 +94,12 @@
       "relation": "oneToMany",
       "target": "api::message.message",
       "mappedBy": "recipient"
+    },
+    "driver": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::driver.driver",
+      "mappedBy": "user"
     }
   }
 }
