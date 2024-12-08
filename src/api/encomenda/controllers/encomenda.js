@@ -53,6 +53,16 @@ module.exports = createCoreController('api::encomenda.encomenda', ({strapi}) => 
     return entity;
   },
 
+  // create findone fuction to get encomenda by id and include in return message attribute
+  async findOne(ctx) {
+    const { id } = ctx.params;
+    const entity = await strapi.db.query('api::encomenda.encomenda').findOne({ where: { id }, populate: true });
+    if (!entity) {
+      return ctx.notFound("Encomenda não encontrada.");
+    }
+    return entity;
+  },
+
   async findFreeEncomenda(ctx) {
     try {
       const encomendas = await strapi.service('api::encomenda.encomenda').findEncomendaFreeForDriver(ctx);
