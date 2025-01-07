@@ -34,12 +34,6 @@
       "target": "api::pacote.pacote",
       "inversedBy": "encomenda"
     },
-    "endereco_entrega": {
-      "type": "string"
-    },
-    "endereco_recolha": {
-      "type": "string"
-    },
     "driver": {
       "type": "relation",
       "relation": "oneToOne",
@@ -50,6 +44,16 @@
       "relation": "oneToMany",
       "target": "api::message.message",
       "mappedBy": "encomenda"
+    },
+    "endereco_entrega": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::address.address"
+    },
+    "endereco_recolha": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::address.address"
     }
   }
 }
