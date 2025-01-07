@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2025-01-07T04:18:49.517Z"
+    "x-generation-date": "2025-01-07T21:07:15.531Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -103,6 +103,18 @@
               },
               "address": {
                 "type": "string"
+              },
+              "latLng": {
+                "type": "string"
+              },
+              "state": {
+                "type": "string"
+              },
+              "zipCode": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
               }
             }
           }
@@ -164,6 +176,18 @@
             "type": "string"
           },
           "address": {
+            "type": "string"
+          },
+          "latLng": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          },
+          "zipCode": {
+            "type": "string"
+          },
+          "name": {
             "type": "string"
           },
           "createdAt": {
@@ -3026,6 +3050,18 @@
                                                                         "address": {
                                                                           "type": "string"
                                                                         },
+                                                                        "latLng": {
+                                                                          "type": "string"
+                                                                        },
+                                                                        "state": {
+                                                                          "type": "string"
+                                                                        },
+                                                                        "zipCode": {
+                                                                          "type": "string"
+                                                                        },
+                                                                        "name": {
+                                                                          "type": "string"
+                                                                        },
                                                                         "createdAt": {
                                                                           "type": "string",
                                                                           "format": "date-time"
@@ -5357,6 +5393,18 @@
                                                                                     "address": {
                                                                                       "type": "string"
                                                                                     },
+                                                                                    "latLng": {
+                                                                                      "type": "string"
+                                                                                    },
+                                                                                    "state": {
+                                                                                      "type": "string"
+                                                                                    },
+                                                                                    "zipCode": {
+                                                                                      "type": "string"
+                                                                                    },
+                                                                                    "name": {
+                                                                                      "type": "string"
+                                                                                    },
                                                                                     "createdAt": {
                                                                                       "type": "string",
                                                                                       "format": "date-time"
@@ -7654,6 +7702,18 @@
                                                                         "address": {
                                                                           "type": "string"
                                                                         },
+                                                                        "latLng": {
+                                                                          "type": "string"
+                                                                        },
+                                                                        "state": {
+                                                                          "type": "string"
+                                                                        },
+                                                                        "zipCode": {
+                                                                          "type": "string"
+                                                                        },
+                                                                        "name": {
+                                                                          "type": "string"
+                                                                        },
                                                                         "createdAt": {
                                                                           "type": "string",
                                                                           "format": "date-time"
@@ -9944,6 +10004,18 @@
                                                                         "address": {
                                                                           "type": "string"
                                                                         },
+                                                                        "latLng": {
+                                                                          "type": "string"
+                                                                        },
+                                                                        "state": {
+                                                                          "type": "string"
+                                                                        },
+                                                                        "zipCode": {
+                                                                          "type": "string"
+                                                                        },
+                                                                        "name": {
+                                                                          "type": "string"
+                                                                        },
                                                                         "createdAt": {
                                                                           "type": "string",
                                                                           "format": "date-time"
@@ -12127,6 +12199,18 @@
                                                                           "type": "string"
                                                                         },
                                                                         "address": {
+                                                                          "type": "string"
+                                                                        },
+                                                                        "latLng": {
+                                                                          "type": "string"
+                                                                        },
+                                                                        "state": {
+                                                                          "type": "string"
+                                                                        },
+                                                                        "zipCode": {
+                                                                          "type": "string"
+                                                                        },
+                                                                        "name": {
                                                                           "type": "string"
                                                                         },
                                                                         "createdAt": {
@@ -15356,6 +15440,18 @@
                                                                           "address": {
                                                                             "type": "string"
                                                                           },
+                                                                          "latLng": {
+                                                                            "type": "string"
+                                                                          },
+                                                                          "state": {
+                                                                            "type": "string"
+                                                                          },
+                                                                          "zipCode": {
+                                                                            "type": "string"
+                                                                          },
+                                                                          "name": {
+                                                                            "type": "string"
+                                                                          },
                                                                           "createdAt": {
                                                                             "type": "string",
                                                                             "format": "date-time"
@@ -17646,6 +17742,18 @@
                                                                           "type": "string"
                                                                         },
                                                                         "address": {
+                                                                          "type": "string"
+                                                                        },
+                                                                        "latLng": {
+                                                                          "type": "string"
+                                                                        },
+                                                                        "state": {
+                                                                          "type": "string"
+                                                                        },
+                                                                        "zipCode": {
+                                                                          "type": "string"
+                                                                        },
+                                                                        "name": {
                                                                           "type": "string"
                                                                         },
                                                                         "createdAt": {
@@ -20209,6 +20317,18 @@
                                                                                     "address": {
                                                                                       "type": "string"
                                                                                     },
+                                                                                    "latLng": {
+                                                                                      "type": "string"
+                                                                                    },
+                                                                                    "state": {
+                                                                                      "type": "string"
+                                                                                    },
+                                                                                    "zipCode": {
+                                                                                      "type": "string"
+                                                                                    },
+                                                                                    "name": {
+                                                                                      "type": "string"
+                                                                                    },
                                                                                     "createdAt": {
                                                                                       "type": "string",
                                                                                       "format": "date-time"
@@ -22326,6 +22446,18 @@
                                                                           "type": "string"
                                                                         },
                                                                         "address": {
+                                                                          "type": "string"
+                                                                        },
+                                                                        "latLng": {
+                                                                          "type": "string"
+                                                                        },
+                                                                        "state": {
+                                                                          "type": "string"
+                                                                        },
+                                                                        "zipCode": {
+                                                                          "type": "string"
+                                                                        },
+                                                                        "name": {
                                                                           "type": "string"
                                                                         },
                                                                         "createdAt": {

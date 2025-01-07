@@ -384,7 +384,10 @@ export interface ApiAddressAddress extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
+    latLng: Attribute.String;
+    name: Attribute.String;
     publishedAt: Attribute.DateTime;
+    state: Attribute.String;
     updatedAt: Attribute.DateTime;
     updatedBy: Attribute.Relation<
       'api::address.address',
@@ -392,6 +395,7 @@ export interface ApiAddressAddress extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
+    zipCode: Attribute.String;
   };
 }
 
@@ -575,8 +579,16 @@ export interface ApiEncomendaEncomenda extends Schema.CollectionType {
       'oneToOne',
       'api::driver.driver'
     >;
-    endereco_entrega: Attribute.String;
-    endereco_recolha: Attribute.String;
+    endereco_entrega: Attribute.Relation<
+      'api::encomenda.encomenda',
+      'oneToOne',
+      'api::address.address'
+    >;
+    endereco_recolha: Attribute.Relation<
+      'api::encomenda.encomenda',
+      'oneToOne',
+      'api::address.address'
+    >;
     estado: Attribute.Enumeration<
       ['pendente', 'aceito', 'em transito', 'concluido']
     > &

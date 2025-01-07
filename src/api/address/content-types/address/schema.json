@@ -21,6 +21,18 @@
     },
     "address": {
       "type": "string"
+    },
+    "latLng": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "zipCode": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
     }
   }
 }
